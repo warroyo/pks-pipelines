@@ -1,0 +1,56 @@
+#resources
+resource_types:
+- name: terraform
+  type: docker-image
+  source:
+    repository: ljfranklin/terraform-resource
+    tag: latest
+- name: pivnet
+  type: docker-image
+  source:
+    repository: pivotalcf/pivnet-resource
+    tag: latest-final
+
+resources:
+- name: pks
+  type: pivnet
+  source:
+    api_token: ((pivnet-api-token))
+    product_slug: pivotal-container-service
+    product_version: 1.7.0
+    sort_by: semver
+
+jobs:
+
+#create pks cluster 
+- name: create-cluster
+  public: false
+  plan:
+  - aggregate:
+    - get: pks
+      params:
+        globs:
+        - pks-linux*
+  - task: create-cluster
+    file: pcf-automation-source/tasks/create-cluster/create-cluster.yml
+    input_mapping:
+      pks: pks
+    params:
+      CLUSTER_NAME: ((pks.cluster_name))
+      CLUSTER_HOSTNAME: ((pks.cluster_name)).((pks.dns_suffix))
+      PKS_PLAN: ((pks.plan))
+      PKS_PASSWORD: ((pks.password))
+      PKS_USERNAME: ((pks.username))
+      PKS_API: ((pks.api))
+
+
+
+#create master load balancer 
+
+#add lb dns
+
+#deploy netscaler crds
+
+#deploy traefik
+
+#create dns entry for ingress

@@ -1,0 +1,22 @@
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: ubuntu
+    tag: bionic
+
+inputs:
+  - name: pks
+params:
+  PKS_PASSSWORD:
+  PKS_USERNAME:
+  PKS_API:
+  CLUSTER_HOSTNAME:
+  CLUSTER_NAME:
+  PKS_PLAN:
+
+
+run:
+  path: pcf-automation-source/tasks/create-cluster/create-cluster.sh
