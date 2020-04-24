@@ -19,4 +19,4 @@ params:
 
 
 run:
-  path: pcf-automation-source/tasks/create-cluster/create-cluster.sh
+  path: pipeline-repo/tasks/create-cluster/create-cluster.sh

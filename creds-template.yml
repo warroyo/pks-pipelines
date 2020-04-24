@@ -1,0 +1,8 @@
+pks:
+  cluster_name: testing
+  dns_suffix: infblx.lab.local
+  plan: small
+  api: api.pks.lab.local
+  password:
+  username: 
+pivnet_api_token: 

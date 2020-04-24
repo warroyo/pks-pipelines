@@ -1,4 +1,0 @@
-pks:
-  cluster-name: testing
-  dns-suffix: infblx.lab.local
-  plan: small
