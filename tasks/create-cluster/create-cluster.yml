@@ -9,6 +9,7 @@ image_resource:
 
 inputs:
   - name: pks
+  - name: pipeline-repo
 params:
   PKS_PASSSWORD:
   PKS_USERNAME:

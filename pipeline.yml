@@ -39,8 +39,6 @@ jobs:
         - pks-linux*
   - task: create-cluster
     file: pipeline-repo/tasks/create-cluster/create-cluster.yml
-    input_mapping:
-      pks: pks
     params:
       CLUSTER_NAME: ((pks.cluster_name))
       CLUSTER_HOSTNAME: ((pks.cluster_name)).((pks.dns_suffix))
