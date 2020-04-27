@@ -9,6 +9,6 @@ mv pks/pks-linux-* pks-cli
 chmod +x pks-cli
 ./pks-cli login -a $PKS_API -u $PKS_USERNAME -p $PKS_PASSWORD -k
 echo "getting master ips"
-k8s_masters=$(./pks-cli cluster "${CLUSTER_NAME}" --json | jq -r .kubernetes_master_ips)
+k8s_masters=$(./pks-cli cluster "${CLUSTER_NAME}" --json | ./jq -r .kubernetes_master_ips)
 echo "k8s_masters = ${k8s_masters}" > k8s_vars/masters.tfvars
 
