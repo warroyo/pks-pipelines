@@ -8,16 +8,12 @@ image_resource:
     tag: bionic
 
 inputs:
-  - name: pks
   - name: pipeline-repo
 outputs:
-  - name: k8s_vars 
+ - name: tf-source
 params:
-  PKS_PASSSWORD:
-  PKS_USERNAME:
-  PKS_API:
-  CLUSTER_NAME:
-
+  PLUGIN_URL:
+  PLUGIN_PATH:
 
 run:
-  path: pipeline-repo/tasks/get-master-ips/get-master-ips.sh
+  path: pipeline-repo/tasks/install-tf-plugin/install-tf-plugin.sh
