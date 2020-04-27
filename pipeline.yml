@@ -25,17 +25,17 @@ resources:
     uri: ((github_repo.uri))
     branch: master
 
-- name: tf-state
-  type: terraform
-  source:
-    backend_type: s3
-    backend_config:
-      workspace_key_prefix: ((pks.env_name))
-      bucket: ((s3.buckets.terraform))
-      region: us-east-1
-      access_key: ((s3.buckets.access_key))
-      secret_key: ((s3.buckets.secret_key))
-    vars:
+# - name: tf-state
+#   type: terraform
+#   source:
+#     backend_type: s3
+#     backend_config:
+#       workspace_key_prefix: ((pks.env_name))
+#       bucket: ((s3.buckets.terraform))
+#       region: us-east-1
+#       access_key: ((s3.buckets.access_key))
+#       secret_key: ((s3.buckets.secret_key))
+#     vars:
 
 
 jobs:
@@ -82,15 +82,15 @@ jobs:
       PKS_PASSWORD: ((pks.password))
       PKS_USERNAME: ((pks.username))
       PKS_API: ((pks.api))
-  - put: tf-state
-    params:
-    # env:
-    #   TF_LOG: DEBUG
-      env_name: citrix
-      terraform_source: pipeline-repo/citrix
-      delete_on_failure: false
-      var_files:
-      - 
+  # - put: tf-state
+  #   params:
+  #   # env:
+  #   #   TF_LOG: DEBUG
+  #     env_name: citrix
+  #     terraform_source: pipeline-repo/citrix
+  #     delete_on_failure: false
+  #     var_files:
+  #     - 
 
 
 #add lb dns
