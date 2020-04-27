@@ -25,6 +25,17 @@ resources:
     uri: ((github_repo.uri))
     branch: master
 
+- name: vip-state-citrix
+  type: terraform
+  source:
+    backend_type: s3
+    backend_config:
+      bucket: ((gcp.buckets.terraform))
+      prefix: ((pks.env_name))
+      credentials: ((gcp.gcp_service_account))
+    vars:
+
+
 jobs:
 
 #create pks cluster 
@@ -50,6 +61,30 @@ jobs:
 
 
 #create master load balancer 
+- name: create-master-vip
+  public: false
+  plan:
+  - in_parallel:
+    - get: pipeline-repo 
+    - get: pks
+      params:
+        globs:
+        - pks-linux*
+  - task: get-master-ips
+    file: pipeline-repo/tasks/get-master-ips/get-master-ips.yml
+    params:
+      CLUSTER_NAME: ((pks.cluster_name))
+      PKS_PASSWORD: ((pks.password))
+      PKS_USERNAME: ((pks.username))
+      PKS_API: ((pks.api))
+  # - put: env-state-gcp
+  #   params:
+  #   # env:
+  #   #   TF_LOG: DEBUG
+  #     env_name: ((pks.env_name))
+  #     terraform_source: pipeline-repo/citrix
+  #     delete_on_failure: false
+
 
 #add lb dns
 
