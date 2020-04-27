@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -eu
-mkdir k8s_vars
+mkdir -p k8s_vars
 apt-get update && apt-get install -y curl
 curl -L -s -o jq https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64
 chmod +x jq
