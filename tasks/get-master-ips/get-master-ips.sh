@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -eu
-apt-get update && apt-get install curl
+apt-get update && apt-get install -y curl
 curl -L -s -o jq https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64
 chmod +x jq
 mv pks/pks-linux-* pks-cli
