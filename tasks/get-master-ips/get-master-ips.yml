@@ -11,7 +11,7 @@ inputs:
   - name: pks
   - name: pipeline-repo
 outputs:
-  - name: k8s_vars 
+  - name: k8s_vars
 params:
   PKS_PASSSWORD:
   PKS_USERNAME:
