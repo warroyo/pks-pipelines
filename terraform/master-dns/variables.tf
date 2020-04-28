@@ -18,3 +18,14 @@ variable "dns_zone" {
   type        = string
   description = "dns zone name"
 }
+
+variable "tenant_id" {
+  type        = string
+  description = "tenant id"
+}
+
+
+variable "cidr" {
+  type        = string
+  description = "cidr"
+}

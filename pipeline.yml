@@ -138,6 +138,8 @@ jobs:
         pks_env: ((pks.env_name))
         cluster_name: ((pks.cluster_name))
         dns_zone: ((infoblox.dns_zone))
+        cidr: ((infoblox.cidr))
+        tenant_id: ((infoblox.tenant_id))
 
 
 #deploy netscaler crds
