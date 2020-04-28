@@ -126,6 +126,10 @@ jobs:
      PLUGIN_URL: https://infoblox-provider.s3.amazonaws.com/terraform-provider-infoblox.tar.gz
   - put: tf-state
     params:
+      env:
+        INFOBLOX_USERNAME: ((infoblox.user))
+        INFOBLOX_SERVER: ((infoblox.server))
+        INFOBLOX_PASSWORD: ((infoblox.password))
       env_name: master-dns
       terraform_source: tf-source/master-dns
       delete_on_failure: false
@@ -134,9 +138,6 @@ jobs:
         pks_env: ((pks.env_name))
         cluster_name: ((pks.cluster_name))
         dns_zone: ((infoblox.dns_zone))
-        infoblox_server: ((infoblox.server))
-        infoblox_user: ((infoblox.user))
-        infoblox_password: ((infoblox.password))
 
 
 #deploy netscaler crds
