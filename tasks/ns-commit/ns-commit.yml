@@ -7,10 +7,13 @@ image_resource:
     repository: ubuntu
     tag: bionic
 
+inputs:
+  - name: pipeline-repo
+  
 params:
-   NS_URL: 
+   NS_URL:
    NS_LOGIN: 
-   NS_PASSWORD: 
+   NS_PASSWORD:
 
 run:
   path: pipeline-repo/tasks/ns-commit/ns-commit.sh

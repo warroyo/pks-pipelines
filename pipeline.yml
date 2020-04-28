@@ -111,6 +111,35 @@ jobs:
 
 
 #add lb dns
+- name: create-master-lb-dns
+  public: false
+  plan:
+  - in_parallel:
+    - get: pipeline-repo 
+      passed:
+      - create-master-vip
+      trigger: true
+  - task: install-citrix-plugin 
+    file: pipeline-repo/tasks/install-tf-plugin/install-tf-plugin.yml
+    params:
+     PLUGIN_PATH: pipeline-repo/terraform/citrix/terraform.d/plugins/linux_amd64/
+     PLUGIN_URL: https://github.com/citrix/terraform-provider-citrixadc/releases/download/v0.12.21/terraform-provider-citrixadc_0.12.21_linux_amd64.tar.gz
+  - put: tf-state
+    params:
+      env:
+        NS_URL: ((ns.url))
+        NS_LOGIN: ((ns.user))
+        NS_PASSWORD: ((ns.password))
+      env_name: citrix
+      terraform_source: tf-source/citrix
+      delete_on_failure: false
+      var_files:
+      - k8s_vars/masters.tfvars
+      vars:
+        vip_ip: ((ns.vip_ip))
+        pks_env: ((pks.env_name))
+        cluster_name: ((pks.cluster_name))
+
 
 #deploy netscaler crds
 
