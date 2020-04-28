@@ -2,6 +2,4 @@
 
 set -eu
 apt-get update && apt-get install -y curl
-curl -LO https://raw.githubusercontent.com/citrix/terraform-provider-citrixadc/master/ns_commit.sh
-chmod +x ns_commit.sh
-./ns_commit.sh
+curl -k -XPOST -H 'Content-type: application/json' -H "X-NITRO-USER:${NS_USER}" -H "X-NITRO-PASS:${NS_PASSWORD}" ${NS_URL}/nitro/v1/config/nsconfig?action=save -d '{"nsconfig": {}}'
