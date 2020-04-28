@@ -129,18 +129,18 @@ jobs:
       env:
         INFOBLOX_USERNAME: ((infoblox.user))
         INFOBLOX_SERVER: ((infoblox.server))
+        SSLMODE: "false"
         INFOBLOX_PASSWORD: ((infoblox.password))
+        WAPI_VERSION: "2.11"
       env_name: master-dns
       terraform_source: tf-source/master-dns
       delete_on_failure: false
       vars:
         vip_ip: ((ns.vip_ip))
-        pks_env: ((pks.env_name))
         cluster_name: ((pks.cluster_name))
         dns_zone: ((infoblox.dns_zone))
         cidr: ((infoblox.cidr))
         tenant_id: ((infoblox.tenant_id))
-
 
 #deploy netscaler crds
 
