@@ -123,7 +123,7 @@ jobs:
     file: pipeline-repo/tasks/install-tf-plugin/install-tf-plugin.yml
     params:
      PLUGIN_PATH: pipeline-repo/terraform/master-dns/terraform.d/plugins/linux_amd64/
-     PLUGIN_URL: https://github.com/citrix/terraform-provider-citrixadc/releases/download/v0.12.21/terraform-provider-citrixadc_0.12.21_linux_amd64.tar.gz
+     PLUGIN_URL: https://infoblox-provider.s3.amazonaws.com/terraform-provider-infoblox.tar.gz
   - put: tf-state
     params:
       env_name: master-dns
@@ -133,6 +133,10 @@ jobs:
         vip_ip: ((ns.vip_ip))
         pks_env: ((pks.env_name))
         cluster_name: ((pks.cluster_name))
+        dns_zone: ((infoblox.dns_zone))
+        infoblox_server: ((infoblox.server))
+        infoblox_user: ((infoblox.user))
+        infoblox_password: ((infoblox.password))
 
 
 #deploy netscaler crds
