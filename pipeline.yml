@@ -30,6 +30,7 @@ resources:
   source:
     backend_type: s3
     backend_config:
+      key: terraform.tfstate
       workspace_key_prefix: ((pks.env_name))
       bucket: ((s3.buckets.terraform))
       region: us-east-1
@@ -84,7 +85,7 @@ jobs:
   - task: install-citrix-plugin 
     file: pipeline-repo/tasks/install-tf-plugin/install-tf-plugin.yml
     params:
-     PLUGIN_PATH: pipeline-repo/terraform/citrix
+     PLUGIN_PATH: pipeline-repo/terraform/citrix/terraform.d/plugins/
      PLUGIN_URL: https://github.com/citrix/terraform-provider-citrixadc/releases/download/v0.12.21/terraform-provider-citrixadc_0.12.21_linux_amd64.tar.gz
   - put: tf-state
     params:
