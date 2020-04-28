@@ -4,7 +4,7 @@ provider "citrixadc" {
 
 resource "citrixadc_lbvserver" "master-lb" {
   name = "${var.pks_env}-${var.cluster_name}-masters-lb"
-  ipv46 = "${var.vip_ip}"
+  ipv46 = var.vip_ip
   port = "8443"
   servicetype = "TCP"
   lbmethod = "ROUNDROBIN"

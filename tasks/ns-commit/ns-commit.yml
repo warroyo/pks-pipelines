@@ -1,0 +1,16 @@
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: ubuntu
+    tag: bionic
+
+params:
+   NS_URL: 
+   NS_LOGIN: 
+   NS_PASSWORD: 
+
+run:
+  path: pipeline-repo/tasks/ns-commit/ns-commit.sh

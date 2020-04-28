@@ -85,7 +85,7 @@ jobs:
   - task: install-citrix-plugin 
     file: pipeline-repo/tasks/install-tf-plugin/install-tf-plugin.yml
     params:
-     PLUGIN_PATH: pipeline-repo/terraform/citrix/terraform.d/plugins/
+     PLUGIN_PATH: pipeline-repo/terraform/citrix/terraform.d/plugins/linux_amd64/
      PLUGIN_URL: https://github.com/citrix/terraform-provider-citrixadc/releases/download/v0.12.21/terraform-provider-citrixadc_0.12.21_linux_amd64.tar.gz
   - put: tf-state
     params:
@@ -102,6 +102,12 @@ jobs:
         vip_ip: ((ns.vip_ip))
         pks_env: ((pks.env_name))
         cluster_name: ((pks.cluster_name))
+  - task: ns-commit
+    file: pipeline-repo/tasks/ns-commit/ns-commit.yml
+    params:
+      NS_URL: ((ns.url))
+      NS_LOGIN: ((ns.user))
+      NS_PASSWORD: ((ns.password))
 
 
 #add lb dns
